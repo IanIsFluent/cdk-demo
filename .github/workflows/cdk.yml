@@ -1,4 +1,4 @@
-name: run cdk
+name: run cdk command
 
 on:
   workflow_call:
@@ -13,7 +13,8 @@ on:
         required: true
 
 jobs:
-  deploy:
+  cdk-command:
+    name: cdk ${{command}}
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -5,7 +5,6 @@ on:
 
 jobs:
   destroy:
-    name: cdk destroy
     uses: ./.github/workflows/cdk.yml
     with:
       command: destroy
