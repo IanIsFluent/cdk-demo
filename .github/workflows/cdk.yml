@@ -6,6 +6,9 @@ on:
       command:
         type: string
         required: true
+      args:
+        type: string
+        required: true
       ref:
         type: string
         required: true
@@ -33,13 +36,7 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      # - name: Set branch name
-      #   id: environmentname
-      #   run: echo ::set-output name=environment_name ::${GITHUB_REF#refs/*/} # ${GITHUB_REF##*/}
-      # - name: environment name set
-      #   run: echo ${{ steps.environmentname.outputs.environment_name }}
-
-      - run: ./node_modules/aws-cdk/bin/cdk ${{inputs.command}}
+      - run: ./node_modules/aws-cdk/bin/cdk ${{inputs.command}} ${{inputs.args}}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
