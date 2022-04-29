@@ -4,10 +4,6 @@ on:
   push:
 
 jobs:
-  showBranchName:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{github.ref_name}}
   deploy:
     uses: ./.github/workflows/cdk.yml
     with:

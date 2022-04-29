@@ -4,10 +4,6 @@ on:
   delete:
 
 jobs:
-  showDeleteRef:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{github.event.ref}}
   destroy:
     if: github.event.ref_type == 'branch'
     uses: ./.github/workflows/cdk.yml
