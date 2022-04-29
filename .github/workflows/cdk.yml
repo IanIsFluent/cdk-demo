@@ -1,4 +1,4 @@
-name: deploy
+name: run cdk
 
 on:
   workflow_call:

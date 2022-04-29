@@ -1,14 +1,14 @@
-name: deploy
+name: destroy
 
 on:
-  push:
+  delete:
 
 jobs:
-  deploy:
-    name: cdk deploy
+  destroy:
+    name: cdk destroy
     uses: ./.github/workflows/cdk.yml
     with:
-      command: deploy
+      command: destroy
     secrets:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
