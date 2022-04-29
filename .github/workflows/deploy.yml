@@ -20,9 +20,16 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      - name: Set branch name
+        id: environmentname
+        run: echo ::set-output name=environment_name ::${GITHUB_REF#refs/*/} # ${GITHUB_REF##*/}
+      - name: environment name set
+        run: echo ${{ steps.environmentname.outputs.environment_name }}
+
       - name: cdk deploy
         uses: youyo/aws-cdk-github-actions@v2
         with:
+          working-directory: cdk-workshop
           cdk_subcommand: 'deploy'
           cdk_stack: 'stack1'
           cdk_args: '--require-approval never'
