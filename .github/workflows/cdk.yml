@@ -14,7 +14,7 @@ on:
 
 jobs:
   cdk-command:
-    name: cdk ${{command}}
+    name: cdk ${{inputs.command}}
     runs-on: ubuntu-latest
     defaults:
       run:
