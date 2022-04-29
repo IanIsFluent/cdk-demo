@@ -1,6 +1,6 @@
 # CDK
 
-[CDK Features](https://aws.amazon.com/cdk/features/?refid=ce1f55b8-6da8-4aa2-af36-3f11e9a449ae)
+[Features](https://aws.amazon.com/cdk/features/?refid=ce1f55b8-6da8-4aa2-af36-3f11e9a449ae)
 
 Allows you to define your cloud resources using 'familiar programming languages'.
 
@@ -24,11 +24,13 @@ Because it creates required sub-resources with sensible defaults, you can write 
 
 The SDK for creating AWS resources using CDK. One _module_ for each AWS service. [AWS CDK API Reference (v2)](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-construct-library.html)
 
-## CLI commands (I have known)
+## CDK CLI commands (I have known)
 
 - bootstrap
 - update
 - destroy
+
+The deployment stack code is TS, so needs to be compiled before running CDK CLI commands. `npm run watch` in another terminal.
 
 ### `cdk synth`
 
