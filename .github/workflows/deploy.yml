@@ -4,10 +4,16 @@ on:
   push:
 
 jobs:
+  showBranchName:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{github.ref_name}}
   deploy:
     uses: ./.github/workflows/cdk.yml
     with:
       command: deploy
+      args: --require-approval never
+      ref: ${{github.ref_name}}
     secrets:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

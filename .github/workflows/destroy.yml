@@ -4,10 +4,17 @@ on:
   delete:
 
 jobs:
+  showDeleteRef:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{github.event.ref}}
   destroy:
+    if: github.event.ref_type == 'branch'
     uses: ./.github/workflows/cdk.yml
     with:
       command: destroy
+      args: --force
+      ref: ${{github.event.ref}}
     secrets:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
