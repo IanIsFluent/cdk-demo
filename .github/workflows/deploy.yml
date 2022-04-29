@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    uses: .github/workflows/cdk.yml
+    uses: ./.github/workflows/cdk.yml
     with:
       command: deploy
     secrets:
