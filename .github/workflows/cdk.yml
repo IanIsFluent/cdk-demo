@@ -6,6 +6,9 @@ on:
       command:
         type: string
         required: true
+      ref:
+        type: string
+        required: true
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -30,16 +33,16 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: Set branch name
-        id: environmentname
-        run: echo ::set-output name=environment_name ::${GITHUB_REF#refs/*/} # ${GITHUB_REF##*/}
-      - name: environment name set
-        run: echo ${{ steps.environmentname.outputs.environment_name }}
+      # - name: Set branch name
+      #   id: environmentname
+      #   run: echo ::set-output name=environment_name ::${GITHUB_REF#refs/*/} # ${GITHUB_REF##*/}
+      # - name: environment name set
+      #   run: echo ${{ steps.environmentname.outputs.environment_name }}
 
-      - run: ./node_modules/aws-cdk/bin/cdk ${{inputs.command}} --require-approval never
+      - run: ./node_modules/aws-cdk/bin/cdk ${{inputs.command}}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: 'eu-west-2'
-          deployment_environment: ${{ steps.environmentname.outputs.environment_name }}
+          deployment_environment: ${{ inputs.ref }}
           deployment_commitSha: ${{ github.sha }}
