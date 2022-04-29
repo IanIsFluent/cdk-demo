@@ -35,7 +35,7 @@ jobs:
       - name: environment name set
         run: echo ${{ steps.environmentname.outputs.environment_name }}
 
-      - run: ./node_modules/aws-cdk/bin/cdk {{inputs.command}} --require-approval never
+      - run: ./node_modules/aws-cdk/bin/cdk ${{inputs.command}} --require-approval never
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
