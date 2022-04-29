@@ -56,10 +56,16 @@ Shows what will happen when you run `cdk deploy`. Good to check - especially if 
 
 ### `cdk deploy --hotswap` 🤯⏰⚠
 
-Makes a small change - introducing 'drift' into the CF stack to let you debug changes more quickly. Importantly the deploy time can go from >1m to 3s. Don't use in production!
+Inspects changes and works out if a small change can be made instead - introducing 'drift' into the CF stack to let you debug changes more quickly.
+
+Importantly the deploy time can go from >1m to 3s.
+
+Will call `cdk deploy` itself if needed.
+
+Don't use in production!
 
 ### `cdk watch` 🤯🤯
 
-Calls `cdk deploy --hotswap` automatically on changes. So you can work on code, and have it deployed to the cloud ASAP.
+Calls `cdk deploy --hotswap` automatically on changes. So you can work on code, and have it deployed to the cloud ASAP (Added December 2021).
 
 Files to watch controlled by `cdk.json` `watch` param.
