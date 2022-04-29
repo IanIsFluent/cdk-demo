@@ -20,6 +20,10 @@ Because it creates required sub-resources with sensible defaults, you can write 
 
 [CDK Workshop](https://cdkworkshop.com/)
 
+## AWS Construct library
+
+The SDK for creating AWS resources using CDK. One _module_ for each AWS service. [AWS CDK API Reference (v2)](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-construct-library.html)
+
 ## CLI commands (I have known)
 
 - bootstrap
@@ -43,8 +47,19 @@ The good stuff!
 1. Synthesizes the CloudFormation template from code
 1. Uploads it to the CDK bootstrap stack
 1. Works out the differences between the previous template and the new one
+1. Creates any required archives and uploads them to the bootstrap stack
 1. Applies the diff to update resources to satisfy the new template
 
 ### `cdk diff`
 
 Shows what will happen when you run `cdk deploy`. Good to check - especially if you're expecting resources to be destroyed.
+
+### `cdk deploy --hotswap` 🤯⏰⚠
+
+Makes a small change - introducing 'drift' into the CF stack to let you debug changes more quickly. Importantly the deploy time can go from >1m to 3s. Don't use in production!
+
+### `cdk watch` 🤯🤯
+
+Calls `cdk deploy --hotswap` automatically on changes. So you can work on code, and have it deployed to the cloud ASAP.
+
+Files to watch controlled by `cdk.json` `watch` param.
