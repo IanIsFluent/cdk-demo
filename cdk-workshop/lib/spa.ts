@@ -2,10 +2,6 @@ import { Stack, StackProps } from 'aws-cdk-lib';
 import { SPADeploy, SPADeploymentWithCloudFront } from 'cdk-spa-deploy';
 import { Construct } from 'constructs';
 
-export interface SpaProps = {
-
-}
-
 export class Spa extends Construct {
   public readonly siteWithCf: SPADeploymentWithCloudFront;
   constructor(scope: Construct, id: string) {
@@ -20,7 +16,6 @@ export class Spa extends Construct {
       {
         indexDoc: 'index.html',
         websiteFolder: '../spa/build',
-
       }
     );
 
