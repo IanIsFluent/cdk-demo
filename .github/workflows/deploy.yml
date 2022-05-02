@@ -4,6 +4,27 @@ on:
   push:
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '15'
+          cache: 'npm'
+          cache-dependency-path: 'spa/package-lock.json'
+      - run: npm ci
+        working-directory: ./spa
+      - run: npm run build
+        working-directory: ./spa
+      - uses: actions/cache@v3
+        with:
+          path: spa/build/**/*
+          key: spa-${{ github.ref }}-${{github.sha}}
+
   deploy:
     uses: ./.github/workflows/cdk.yml
     with:
