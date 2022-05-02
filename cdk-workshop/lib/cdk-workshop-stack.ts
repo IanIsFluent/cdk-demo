@@ -4,10 +4,13 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigw from 'aws-cdk-lib/aws-apigateway';
 import { HitCounter } from './hitcounter';
 import { TableViewer } from 'cdk-dynamo-table-viewer';
+import { Spa } from './spa';
 
 export class CdkWorkshopStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
+
+    const spa = new Spa(this, 'Spa');
 
     // defines an AWS Lambda resource
     // first parameter - scope: almost always this (create child in the context of this stack)
