@@ -26,6 +26,7 @@ jobs:
           key: spa-${{ github.ref }}-${{github.sha}}
 
   deploy:
+    needs: build
     uses: ./.github/workflows/cdk.yml
     with:
       command: deploy
